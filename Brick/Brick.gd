@@ -39,7 +39,12 @@ func _process(_delta):
 
 func start_brick():
 	if HUD.blocks_appear:
-		pass
+		var target_pos = position
+		var appear_duration = randf() * appear_speed + 1.0
+		position.y = -100
+		#interpolate property, understand it!
+		$Tween.interpolate_property(self, "position", position, target_pos, appear_duration, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+		$Tween.start()
 	else:
 		position = Vector2(position.x,target_y)
 
